@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Unity.Cinemachine;
+using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,6 +11,15 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private CinemachineCamera CinemachineCamera;
+    [SerializeField] private FlashlightController flashlight;
+
+    [Header("Camera Setting")]
+    [SerializeField] private float NormalLensField;
+    [SerializeField] private float RunLensField;
+    [SerializeField] private float UVLightLensField;
+
+
 
 
     private Rigidbody rb;
@@ -17,14 +28,22 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-    private void Update()
+    private void Start()
     {
+        if(CinemachineCamera != null) NormalLensField = CinemachineCamera.Lens.FieldOfView;
+       
+    
+    }
+    private void Update()
+    {     
         HandleInput();
     }
     private void FixedUpdate()
     {
         Move();
+        UpdateCameraFOV();
     }
+
 
 
     private void HandleInput()
@@ -49,5 +68,24 @@ public class PlayerMovement : MonoBehaviour
         Vector3 targetposition = rb.position + moveDir * currentSpeed * Time.fixedDeltaTime;
         rb.MovePosition(targetposition);
     }
-  
+   
+    private void UpdateCameraFOV()
+    {
+        if (CinemachineCamera != null && flashlight != null)
+        {
+            float targetFOV = NormalLensField;
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                targetFOV = RunLensField;
+            }
+            
+            if (flashlight != null && flashlight.IsUVMode)
+            {
+                targetFOV = UVLightLensField;
+            }
+
+            CinemachineCamera.Lens.FieldOfView = Mathf.Lerp(CinemachineCamera.Lens.FieldOfView, targetFOV, Time.deltaTime * 5f);
+        }
+    }
 }
