@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 7724106361326252682}
   - component: {fileID: 2746933449349928594}
   - component: {fileID: 8195595194695474487}
-  - component: {fileID: 2006021466310294412}
   m_Layer: 0
-  m_Name: Flash Light
+  m_Name: Flash Linght
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,20 +127,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!114 &2006021466310294412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3848950178250397746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b62e3567fef71b48bec2d5eda52ca4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FlashlightController
-  NormalColor: {r: 1, g: 1, b: 1, a: 1}
-  UVColor: {r: 0.45490196, g: 0.003921569, b: 1, a: 1}
 --- !u!1 &5815546805819379226
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,10 +319,10 @@ MonoBehaviour:
   runSpeed: 7
   cameraTransform: {fileID: 0}
   CinemachineCamera: {fileID: 0}
-  flashlight: {fileID: 2006021466310294412}
+  flashlight: {fileID: 2746933449349928594}
   NormalLensField: 30
   RunLensField: 35
-  UVLightLensField: 25
+  UVLightLensField: 0
 --- !u!114 &3966267877579588665
 MonoBehaviour:
   m_ObjectHideFlags: 0

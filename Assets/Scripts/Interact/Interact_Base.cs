@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public abstract class Interact_Base : MonoBehaviour
@@ -15,18 +16,20 @@ public abstract class Interact_Base : MonoBehaviour
 
     public abstract void Interact();
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             canInteract = true;
+            UIMamager.Instance.ShowInteractText(true);
         }
     }
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             canInteract = false;
+            UIMamager.Instance.ShowInteractText(false);
         }
     }
 
