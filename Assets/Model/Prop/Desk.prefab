@@ -110,7 +110,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1603174912382344022, guid: 3c55661f7f164e94b8f6057fbf3bd96e, type: 3}
       propertyPath: m_Name
-      value: desk_2 (3)
+      value: 'desk_2 '
       objectReference: {fileID: 0}
     - target: {fileID: 3008897952836204340, guid: 3c55661f7f164e94b8f6057fbf3bd96e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -234,7 +234,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1603174912382344022, guid: 3c55661f7f164e94b8f6057fbf3bd96e, type: 3}
       propertyPath: m_Name
-      value: desk_2
+      value: desk_1
       objectReference: {fileID: 0}
     - target: {fileID: 3008897952836204340, guid: 3c55661f7f164e94b8f6057fbf3bd96e, type: 3}
       propertyPath: m_LocalPosition.x

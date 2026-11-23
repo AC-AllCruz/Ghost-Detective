@@ -1,6 +1,8 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UIMamager : MonoBehaviour
 {
@@ -15,23 +17,19 @@ public class UIMamager : MonoBehaviour
     [SerializeField] private GameObject pageUI;
     [SerializeField] private TextMeshProUGUI pageText;
 
-    private void Awake()
+    [Header("other UI Setting")]
+    [SerializeField] private GameObject optionPanel;
+    [SerializeField] private GameObject gameOverUI;
+    public void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
         {
-            Destroy(gameObject);
+            Instance = this;
+
         }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        else Destroy(gameObject);
+
     }
-
-
-    public void Start()
-    {
-        if(interactText != null) interactText.enabled = false;
-        if(pageUI != null) pageUI.SetActive(false);
-    }
-
     public void ShowInteractText(bool show)
     {
         if(interactText == null) return;
@@ -43,6 +41,37 @@ public class UIMamager : MonoBehaviour
         if(pageUI == null) return;
         pageUI.SetActive(show);
         if (pageText != null) pageText.text = text;
+    }
+
+    public void OpenOption(bool open)
+    {
+        if(optionPanel != null) optionPanel.SetActive(open);
+    }
+    public void ShowGameover(bool open)
+    {
+        if(gameOverUI != null) gameOverUI.SetActive(open);
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ResetUI();
+    }
+
+    private void ResetUI()
+    {
+        if (interactText != null) interactText.enabled = false;
+        if (pageUI != null) pageUI.SetActive(false);
+        if (optionPanel != null) optionPanel.SetActive(false);
+        if (gameOverUI != null) gameOverUI.SetActive(false);
     }
 
 }

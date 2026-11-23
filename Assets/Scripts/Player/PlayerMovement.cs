@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleInput()
     {
+        if (GameManager.instance.CurrentState != GameState.Playing) return;
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
@@ -63,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
+        if (GameManager.instance.CurrentState != GameState.Playing) return;
         float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed; //กด shift เพื่อวิ่ง
 
         Vector3 targetposition = rb.position + moveDir * currentSpeed * Time.fixedDeltaTime;
@@ -71,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
    
     private void UpdateCameraFOV()
     {
+        if (GameManager.instance.CurrentState != GameState.Playing) return;
         if (CinemachineCamera != null && flashlight != null)
         {
             float targetFOV = NormalLensField;

@@ -15,6 +15,7 @@ public class PlayerLook : MonoBehaviour
     }
     private void Update()
     {
+        if (GameManager.instance.CurrentState != GameState.Playing) return;
         float mouseX = Input.GetAxis("Mouse X");
 
         transform.Rotate(Vector3.up * mouseX * mouseSensitivity * Time.deltaTime);
